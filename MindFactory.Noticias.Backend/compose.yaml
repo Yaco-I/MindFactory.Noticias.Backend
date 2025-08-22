@@ -1,0 +1,6 @@
+﻿services:
+  mindfactory.noticias.backend.api:
+    image: mindfactory.noticias.backend.api
+    build:
+      context: .
+      dockerfile: MindFactory.Noticias.Backend.API/Dockerfile
