@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{63A44BC1-ABC3-499E-8723-A806883C62D1}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artifacts.EntityFramework", "..\..\Artifacts\Artifacts.EntityFramework\Artifacts.EntityFramework.csproj", "{594E6B8E-6E10-4086-9CE0-54858A257A01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindFactory.Noticias.Backend.Api", "MindFactory.Noticias.Backend.Api\MindFactory.Noticias.Backend.Api.csproj", "{350D0721-C2A4-4E8A-8F23-A6FEB06ACED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindFactory.Noticias.Backend.Domain", "MindFactory.Noticias.Backend.Domain\MindFactory.Noticias.Backend.Domain.csproj", "{8F95EDB2-FAB4-4C74-B85E-9F27AB923FFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +54,10 @@ Global
 		{350D0721-C2A4-4E8A-8F23-A6FEB06ACED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{350D0721-C2A4-4E8A-8F23-A6FEB06ACED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{350D0721-C2A4-4E8A-8F23-A6FEB06ACED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F95EDB2-FAB4-4C74-B85E-9F27AB923FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F95EDB2-FAB4-4C74-B85E-9F27AB923FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F95EDB2-FAB4-4C74-B85E-9F27AB923FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F95EDB2-FAB4-4C74-B85E-9F27AB923FFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

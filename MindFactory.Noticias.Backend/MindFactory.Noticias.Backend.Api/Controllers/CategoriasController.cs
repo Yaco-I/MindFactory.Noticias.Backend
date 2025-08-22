@@ -3,7 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MindFactory.Noticias.Backend.Infrastructure.Entities;
-using MindFactory.Noticias.Backend.Services.Contracts;
+using MindFactory.Noticias.Backend.Services.Contracts.Services;
 using MindFactory.Noticias.Backend.Services.DTOs.Categoria;
 
 namespace MindFactory.Noticias.Backend.Api.Controllers;

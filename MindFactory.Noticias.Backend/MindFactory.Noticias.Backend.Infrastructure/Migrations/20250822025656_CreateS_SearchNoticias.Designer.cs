@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MindFactory.Noticias.Backend.Infrastructure;
 
@@ -11,9 +12,11 @@ using MindFactory.Noticias.Backend.Infrastructure;
 namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
 {
     [DbContext(typeof(NoticiasDbContext))]
-    partial class NoticiasDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250822025656_CreateS_SearchNoticias")]
+    partial class CreateS_SearchNoticias
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

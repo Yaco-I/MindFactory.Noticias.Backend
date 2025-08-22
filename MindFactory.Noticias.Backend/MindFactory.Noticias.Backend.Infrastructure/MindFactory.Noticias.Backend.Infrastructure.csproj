@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Artifacts\Artifacts.EntityFramework\Artifacts.EntityFramework.csproj" />
+      <ProjectReference Include="..\MindFactory.Noticias.Backend.Domain\MindFactory.Noticias.Backend.Domain.csproj" />
     </ItemGroup>
 
 </Project>

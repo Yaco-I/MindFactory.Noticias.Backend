@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MindFactory.Noticias.Backend.Infrastructure.Entities;
+using MindFactory.Noticias.Backend.Infrastructure.Migrations;
+using MindFactory.Noticias.Backend.Infrastructure.ReadModels.NoticiasSearch;
 
 namespace MindFactory.Noticias.Backend.Infrastructure
 {
@@ -12,10 +14,16 @@ namespace MindFactory.Noticias.Backend.Infrastructure
 
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Noticia> Noticias { get; set; }
+        public DbSet<NoticiaSearchDto> NoticiasSearch { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Categoria>().ToTable("Categorias");
+            modelBuilder.Entity<Noticia>().ToTable("Noticias");
+
+            modelBuilder.Entity<NoticiaSearchDto>().HasNoKey();
 
             // Configuración de índices únicos
             modelBuilder.Entity<Categoria>()
