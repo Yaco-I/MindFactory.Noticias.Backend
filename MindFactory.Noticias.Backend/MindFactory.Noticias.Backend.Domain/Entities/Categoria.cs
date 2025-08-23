@@ -4,7 +4,6 @@ using Artifacts.EntityFramework;
 
 namespace MindFactory.Noticias.Backend.Infrastructure.Entities;
 
-[Table("Categoria")]
 public class Categoria : IAuditableEntity
 {
     [Key]
