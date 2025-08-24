@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class SecondMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,7 +51,7 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categoria",
+                name: "Categorias",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -70,7 +68,24 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.Id);
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NoticiasSearch",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    URL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Contenido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Resumen = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Publicada = table.Column<bool>(type: "bit", nullable: false),
+                    CategoriaId = table.Column<int>(type: "int", nullable: false),
+                    CategoriaNombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -186,7 +201,7 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    URL = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    URL = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
                     Contenido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Resumen = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Publicada = table.Column<bool>(type: "bit", nullable: false),
@@ -202,41 +217,11 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Noticias", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Noticias_Categoria_CategoriaId",
+                        name: "FK_Noticias_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
-                        principalTable: "Categoria",
+                        principalTable: "Categorias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Categoria",
-                columns: new[] { "Id", "CreatedBy", "CreatedDate", "DeletedBy", "DeletedDate", "Descripcion", "LastModifiedBy", "LastModifiedDate", "Nombre", "Slug" },
-                values: new object[,]
-                {
-                    { 1, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Noticias sobre el mundo de la tecnología.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tecnología", "tecnologia" },
-                    { 2, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Noticias deportivas nacionales e internacionales.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deportes", "deportes" },
-                    { 3, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Información sobre finanzas y mercados.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Economía", "economia" },
-                    { 4, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Artículos sobre bienestar y salud.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Salud", "salud" },
-                    { 5, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Eventos y noticias culturales.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cultura", "cultura" },
-                    { 6, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Descubrimientos y avances científicos.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ciencia", "ciencia" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Noticias",
-                columns: new[] { "Id", "CategoriaId", "Contenido", "CreatedBy", "CreatedDate", "DeletedBy", "DeletedDate", "LastModifiedBy", "LastModifiedDate", "Publicada", "Resumen", "Titulo", "URL" },
-                values: new object[,]
-                {
-                    { 1, 1, "Contenido de la noticia sobre IA.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre IA.", "Nuevo Avance en IA", "#prueba1" },
-                    { 2, 2, "Contenido de la noticia sobre la final.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre la final.", "Final del Campeonato", "#prueba2" },
-                    { 3, 3, "Contenido de la noticia sobre la bolsa.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Resumen sobre la bolsa.", "Caída de la Bolsa", "#prueba3" },
-                    { 4, 4, "Contenido de la noticia sobre la vacuna.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre la vacuna.", "Descubren Nueva Vacuna", "#prueba4" },
-                    { 5, 5, "Contenido de la noticia sobre la exposición.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre la exposición.", "Exposición de Arte Moderno", "#prueba5" },
-                    { 6, 6, "Contenido de la noticia sobre el viaje a Marte.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Resumen sobre el viaje a Marte.", "Viaje a Marte", "#prueba6" },
-                    { 7, 1, "Contenido de la noticia sobre el smartphone.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre el smartphone.", "Lanzamiento Nuevo Smartphone", "#prueba7" },
-                    { 8, 2, "Contenido de la noticia sobre el récord.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre el récord.", "Récord Olímpico", "#prueba8" },
-                    { 9, 3, "Contenido de la noticia sobre la inflación.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "Resumen sobre la inflación.", "Impacto de la Inflación", "#prueba9" },
-                    { 10, 6, "Contenido de la noticia sobre genética.", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "Resumen sobre genética.", "Avances en Genética", "#prueba10" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -279,8 +264,8 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categoria_Slug",
-                table: "Categoria",
+                name: "IX_Categorias_Slug",
+                table: "Categorias",
                 column: "Slug",
                 unique: true);
 
@@ -318,13 +303,16 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                 name: "Noticias");
 
             migrationBuilder.DropTable(
+                name: "NoticiasSearch");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Categoria");
+                name: "Categorias");
         }
     }
 }

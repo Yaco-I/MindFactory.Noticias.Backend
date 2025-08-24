@@ -10,7 +10,7 @@ public class Noticia: IAuditableEntity
     [Required]
     [MaxLength(200)]
     public string Titulo { get; set; }
-    [MaxLength(500)]
+    [MaxLength(3000)]
     public string URL { get; set; } 
     [Required]
     public string Contenido { get; set; } 

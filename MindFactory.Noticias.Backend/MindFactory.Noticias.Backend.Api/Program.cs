@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Artifacts.Api;
 using Mapster;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MindFactory.Noticias.Backend.Api.Extensions;
 using MindFactory.Noticias.Backend.Infrastructure;
+using MindFactory.Noticias.Backend.Infrastructure.Seed;
 using MindFactory.Noticias.Backend.Services;
 using MindFactory.Noticias.Backend.Services.Contracts;
 
@@ -84,6 +86,24 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<NoticiasDbContext>();
+        context.Database.Migrate(); 
+
+        SeedData.Initialize(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ocurrió un error al aplicar migraciones o seed.");
+    }
+}
+
 app.UseCors();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();

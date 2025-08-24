@@ -266,74 +266,6 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Categorias", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripcion = "Noticias sobre el mundo de la tecnología.",
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Tecnología",
-                            Slug = "tecnologia"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripcion = "Noticias deportivas nacionales e internacionales.",
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Deportes",
-                            Slug = "deportes"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripcion = "Información sobre finanzas y mercados.",
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Economía",
-                            Slug = "economia"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripcion = "Artículos sobre bienestar y salud.",
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Salud",
-                            Slug = "salud"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripcion = "Eventos y noticias culturales.",
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Cultura",
-                            Slug = "cultura"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descripcion = "Descubrimientos y avances científicos.",
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Ciencia",
-                            Slug = "ciencia"
-                        });
                 });
 
             modelBuilder.Entity("MindFactory.Noticias.Backend.Infrastructure.Entities.Noticia", b =>
@@ -384,8 +316,8 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
 
                     b.Property<string>("URL")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(3000)
+                        .HasColumnType("nvarchar(3000)");
 
                     b.HasKey("Id");
 
@@ -395,148 +327,35 @@ namespace MindFactory.Noticias.Backend.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Noticias", (string)null);
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoriaId = 1,
-                            Contenido = "Contenido de la noticia sobre IA.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre IA.",
-                            Titulo = "Nuevo Avance en IA",
-                            URL = "#prueba1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoriaId = 2,
-                            Contenido = "Contenido de la noticia sobre la final.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre la final.",
-                            Titulo = "Final del Campeonato",
-                            URL = "#prueba2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoriaId = 3,
-                            Contenido = "Contenido de la noticia sobre la bolsa.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = false,
-                            Resumen = "Resumen sobre la bolsa.",
-                            Titulo = "Caída de la Bolsa",
-                            URL = "#prueba3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoriaId = 4,
-                            Contenido = "Contenido de la noticia sobre la vacuna.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre la vacuna.",
-                            Titulo = "Descubren Nueva Vacuna",
-                            URL = "#prueba4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CategoriaId = 5,
-                            Contenido = "Contenido de la noticia sobre la exposición.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre la exposición.",
-                            Titulo = "Exposición de Arte Moderno",
-                            URL = "#prueba5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CategoriaId = 6,
-                            Contenido = "Contenido de la noticia sobre el viaje a Marte.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = false,
-                            Resumen = "Resumen sobre el viaje a Marte.",
-                            Titulo = "Viaje a Marte",
-                            URL = "#prueba6"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CategoriaId = 1,
-                            Contenido = "Contenido de la noticia sobre el smartphone.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre el smartphone.",
-                            Titulo = "Lanzamiento Nuevo Smartphone",
-                            URL = "#prueba7"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CategoriaId = 2,
-                            Contenido = "Contenido de la noticia sobre el récord.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre el récord.",
-                            Titulo = "Récord Olímpico",
-                            URL = "#prueba8"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CategoriaId = 3,
-                            Contenido = "Contenido de la noticia sobre la inflación.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = true,
-                            Resumen = "Resumen sobre la inflación.",
-                            Titulo = "Impacto de la Inflación",
-                            URL = "#prueba9"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CategoriaId = 6,
-                            Contenido = "Contenido de la noticia sobre genética.",
-                            CreatedBy = 0,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LastModifiedBy = 0,
-                            LastModifiedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Publicada = false,
-                            Resumen = "Resumen sobre genética.",
-                            Titulo = "Avances en Genética",
-                            URL = "#prueba10"
-                        });
+            modelBuilder.Entity("MindFactory.Noticias.Backend.Infrastructure.ReadModels.NoticiasSearch.NoticiaSearchDto", b =>
+                {
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CategoriaNombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Contenido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Publicada")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Resumen")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("NoticiasSearch");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
