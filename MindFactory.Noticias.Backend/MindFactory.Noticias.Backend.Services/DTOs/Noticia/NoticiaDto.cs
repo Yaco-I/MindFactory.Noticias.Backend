@@ -9,6 +9,6 @@ public record NoticiaDto(
     string Contenido,
     string? Resumen,
     int CategoriaId,
-    string CategoriaNombre,
+    string? CategoriaNombre,
     bool Publicada
 );

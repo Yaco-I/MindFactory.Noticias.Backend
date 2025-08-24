@@ -17,6 +17,7 @@ public class NoticiaService : INoticiaService
     {
         _genericRepository = repository;
         _noticiaRepository = noticiaRepository;
+        _categoriaService = categoriaService;
     }
 
     public async Task<PagedResult<Noticia>> GetAllAsync(int pageIndex, int pageSize)
@@ -31,15 +32,17 @@ public class NoticiaService : INoticiaService
 
     public async Task<Noticia> CreateAsync(Noticia noticia)
     {
-        var categoria = await _categoriaService.GetByIdAsync(noticia.CategoriaId);
-        if (categoria is null)
-            throw new ArgumentException($"La categoria no existe");
+        ValidarCategoria(noticia);
+        ValidarURL(noticia);
 
         return await _genericRepository.InsertAsync(noticia);
     }
 
     public async Task<Noticia?> UpdateAsync(Noticia noticia)
     {
+        ValidarCategoria(noticia);
+        ValidarURL(noticia);
+        
         return await _genericRepository.UpdateAsync(noticia);
     }
 
@@ -52,4 +55,20 @@ public class NoticiaService : INoticiaService
     {
         return await _noticiaRepository.SearchNoticias(noticiaSearchFilter);
     }
+
+    public async void ValidarURL(Noticia noticia)
+    {
+        var noticiaURL =  await _genericRepository.FirstAsync(x => x.URL == noticia.URL);
+        if(noticiaURL?.Id != noticia.Id)
+            throw new ArgumentException("Ya existe una noticia con esta misma URL");
+        
+    }
+
+    public async void ValidarCategoria(Noticia noticia)
+    {
+        var categoria = await _categoriaService.GetByIdAsync(noticia.CategoriaId);
+        if (categoria is null)
+            throw new ArgumentException($"La categoria no existe");
+    }
+
 }

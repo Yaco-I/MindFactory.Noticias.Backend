@@ -48,6 +48,16 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins(configuration["CorsSettings:AllowedOrigins"]) 
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 builder.Services.AddApplicationRepositories();
 builder.Services.AddApplicationServices();
 
@@ -74,7 +84,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
